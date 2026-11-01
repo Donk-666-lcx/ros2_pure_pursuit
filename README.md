@@ -2,6 +2,7 @@
 
 > 基于 ROS2 的差速机器人 **纯追踪路径跟踪 + 激光反应式避障** 实现
 > 课程：机器人操作系统 ｜ 方向：ROS2 导航与仿真
+> 作者：李诚轩（学号 2535030014）｜ GitHub：[Donk-666-lcx](https://github.com/Donk-666-lcx)
 
 ![Trajectory](results/eight.png)
 
