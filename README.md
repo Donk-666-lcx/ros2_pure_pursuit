@@ -14,7 +14,7 @@
 - **纯追踪（Pure Pursuit）横向控制**：速度自适应前视距离，圆形 / 8 字 / S 形 / 直线四种路径 RMS 误差均小于 0.12 m
 - **反应式避障**：二维激光前向扇区检测，危险度驱动「减速 + 朝空旷侧转向」
 - **完整运动学模型**：差速驱动离散运动学、加速度限幅、左右轮转速反解
-- **离线可验证**：无需 ROS 即可运行仿真与单元测试（11 项全部通过）
+- **离线可验证**：无需 ROS 即可运行仿真与单元测试（12 项全部通过）
 - **量化对照实验**：关闭避障后四条路径全部碰撞，开启后零碰撞
 
 ## 目录结构
@@ -31,7 +31,8 @@ ros2_pure_pursuit/
 │   ├── run_sim.py               # 离线仿真入口
 │   └── benchmark.py             # 基准测试矩阵 + 对比表
 ├── launch/nav.launch.py         # ROS2 启动文件
-├── tests/test_core.py           # 单元测试（11 项）
+├── tests/test_core.py           # 单元测试（12 项）
+├── ci/run_ci.sh                 # 一键 CI（语法 + 依赖 + 测试 + 仿真 + 基准）
 ├── docs/ros2/                   # 详细技术文档
 └── results/                     # 仿真图表与基准测试结果
 ```
@@ -147,6 +148,7 @@ PASS  test_acceleration_limit_delays_speed
 PASS  test_avoider_detects_front_obstacle
 PASS  test_avoider_no_obstacle_is_neutral
 PASS  test_lookahead_distance_speed_adaptive
+PASS  test_load_path_with_and_without_header
 PASS  test_path_geometry_helpers
 PASS  test_pure_pursuit_converges_on_straight_path
 PASS  test_pure_pursuit_tracks_circle
@@ -155,7 +157,13 @@ PASS  test_synthetic_scan_range_is_correct
 PASS  test_turn_radius_matches_kinematics
 PASS  test_wheel_speed_inverse
 
-11/11 passed
+12/12 passed
+```
+
+一键跑完全部检查（语法 → 依赖 → 单元测试 → 四路径仿真 → 基准矩阵）：
+
+```bash
+bash ci/run_ci.sh
 ```
 
 ## 后续工作
